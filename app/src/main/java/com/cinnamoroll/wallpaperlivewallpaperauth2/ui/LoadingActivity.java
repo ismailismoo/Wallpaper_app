@@ -117,11 +117,16 @@ public class LoadingActivity extends AppCompatActivity {
         dot1Animator.setDuration(1200); // 1.2 seconds
         dot1Animator.setRepeatCount(ObjectAnimator.INFINITE);
         dot1Animator.setRepeatMode(ObjectAnimator.RESTART);
+        dot1Animator.setInterpolator(new android.view.animation.AccelerateDecelerateInterpolator());
 
         dot4Animator = ObjectAnimator.ofFloat(binding.dot4, "rotation", 0f, -70f, 0f);
         dot4Animator.setDuration(1200); // 1.2 seconds
         dot4Animator.setRepeatCount(ObjectAnimator.INFINITE);
         dot4Animator.setRepeatMode(ObjectAnimator.RESTART);
+        dot4Animator.setInterpolator(new android.view.animation.AccelerateDecelerateInterpolator());
+
+        // Add a slight delay to dot4 to create the cradle effect
+        dot4Animator.setStartDelay(600);
 
         // Start the animations
         dot1Animator.start();

@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.inputmethod.EditorInfo;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,12 +65,88 @@ public class DiscoverFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterCategories(s.toString());
+                // Don't search on every character change to avoid too many requests
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        // Add search button functionality
+        binding.searchInput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                String query = binding.searchInput.getText().toString().trim();
+                if (!query.isEmpty()) {
+                    searchWallpapers(query);
+                }
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void searchWallpapers(String query) {
+        // Show loading
+        binding.categoriesRecycler.setVisibility(View.GONE);
+        binding.categoriesShimmer.setVisibility(View.VISIBLE);
+        binding.categoriesShimmer.startShimmer();
+
+        // Clear previous results
+        filteredCategories.clear();
+        if (categoryAdapter != null) {
+            categoryAdapter.updateCategories(filteredCategories);
+        }
+
+        // Search wallpapers like SearchActivity does
+        new SearchWallpapersTask().execute(query);
+    }
+
+    private class SearchWallpapersTask extends AsyncTask<String, Void, List<CategoryModel>> {
+        @Override
+        protected List<CategoryModel> doInBackground(String... queries) {
+            List<CategoryModel> searchResults = new ArrayList<>();
+            String query = queries[0];
+            
+            try {
+                Document document = Jsoup.connect("https://wallpapercave.com/search?q=" + query.replace(" ", "+"))
+                        .userAgent("chrome")
+                        .followRedirects(true)
+                        .get();
+
+                Elements elements = document.select("div#content").select("div#popular").select("a.albumthumbnail");
+                for (Element element : elements) {
+                    String categoryName = element.select("div.psc").select("p.title").text();
+                    String categoryUrl = element.attr("href");
+                    searchResults.add(new CategoryModel(categoryName, categoryUrl));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            return searchResults;
+        }
+
+        @Override
+        protected void onPostExecute(List<CategoryModel> results) {
+            if (isAdded()) {
+                binding.categoriesShimmer.stopShimmer();
+                binding.categoriesShimmer.setVisibility(View.GONE);
+                
+                if (results.isEmpty()) {
+                    // Show no results message
+                    binding.categoriesRecycler.setVisibility(View.GONE);
+                    // You can add a TextView to show "No results found"
+                } else {
+                    // Show search results
+                    filteredCategories.clear();
+                    filteredCategories.addAll(results);
+                    binding.categoriesRecycler.setVisibility(View.VISIBLE);
+                    if (categoryAdapter != null) {
+                        categoryAdapter.updateCategories(filteredCategories);
+                    }
+                }
+            }
+        }
     }
 
     private void filterCategories(String query) {
@@ -91,6 +168,16 @@ public class DiscoverFragment extends Fragment {
     }
 
     private void loadCarouselData() {
+        // Add some sample wallpapers first to show immediately
+        carouselWallpapers.add(new FeaturedModel("https://wallpapercave.com/wp/wp1234567.jpg", false));
+        carouselWallpapers.add(new FeaturedModel("https://wallpapercave.com/wp/wp1234568.jpg", false));
+        carouselWallpapers.add(new FeaturedModel("https://wallpapercave.com/wp/wp1234569.jpg", false));
+        
+        // Set up the adapter immediately
+        carouselAdapter = new FeaturedAdapter(getActivity(), carouselWallpapers);
+        binding.carouselRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        binding.carouselRecycler.setAdapter(carouselAdapter);
+        
         // Load real wallpapers from the same source as main wallpapers
         new LoadCarouselWallpapers().execute();
     }
@@ -118,9 +205,10 @@ public class DiscoverFragment extends Fragment {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
             if (isAdded()) {
-                carouselAdapter = new FeaturedAdapter(getActivity(), carouselWallpapers);
-                binding.carouselRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                binding.carouselRecycler.setAdapter(carouselAdapter);
+                // Update the existing adapter with new data
+                if (carouselAdapter != null) {
+                    carouselAdapter.notifyDataSetChanged();
+                }
             }
         }
     }
