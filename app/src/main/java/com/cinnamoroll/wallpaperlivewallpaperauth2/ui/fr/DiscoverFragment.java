@@ -27,6 +27,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.cinnamoroll.wallpaperlivewallpaperauth2.MyUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

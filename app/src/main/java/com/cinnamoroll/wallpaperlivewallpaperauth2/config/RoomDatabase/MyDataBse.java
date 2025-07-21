@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.cinnamoroll.wallpaperlivewallpaperauth2.R;
-@Database(entities = {MyFavs.class},version = 1)
+@Database(entities = {MyFavs.class},version = 1, exportSchema = false)
 public abstract class MyDataBse extends RoomDatabase {
     public abstract FavDao favDao();
     private static MyDataBse Instance;
