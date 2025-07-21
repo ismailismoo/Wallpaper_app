@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.fr.DiscoverFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Carousel Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Featured Wallpapers"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:fontFamily="@font/black"
+            android:layout_marginBottom="12dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/carouselRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="24dp"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
+
+        <!-- Search Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Categories"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:fontFamily="@font/black"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Search categories..."
+            android:textColorHint="@color/colorGray"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/search_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:fontFamily="@font/medium"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Categories Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All Categories"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:fontFamily="@font/black"
+            android:layout_marginBottom="12dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <!-- Shimmer for Categories -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/categoriesShimmer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/shimmer_home_wallpapers"/>
+                <include layout="@layout/shimmer_home_wallpapers"/>
+                <include layout="@layout/shimmer_home_wallpapers"/>
+                <include layout="@layout/shimmer_home_wallpapers"/>
+                <include layout="@layout/shimmer_home_wallpapers"/>
+                <include layout="@layout/shimmer_home_wallpapers"/>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </LinearLayout>
+
+</ScrollView> 

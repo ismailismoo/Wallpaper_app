@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/applybg"
+    android:backgroundTint="@color/colorCard"
+    android:layout_gravity="bottom"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:adjustViewBounds="true"
+            android:padding="15dp"
+            app:tint="@color/colorWhite"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/downloadwall"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+        <TextView
+            android:gravity="center"
+            android:text="Watch Ad to Download"
+            android:fontFamily="@font/black"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:alpha=".8"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:text="to download this wallpaper, you will need to watch an ad first, then you can download it for free"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/DownloadNow"
+            android:layout_margin="20dp"
+            android:text="Watch &amp; Download"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/sub_on"
+            android:fontFamily="@font/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>

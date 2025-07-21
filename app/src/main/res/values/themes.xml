@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.NewCode" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondary</item>
+        <item name="colorOnSecondaryContainer">@color/colorPrimary</item>
+        <item name="colorOnSurface">@color/colorPrimary</item>
+        <item name="colorOnSurfaceVariant">@color/colorGray</item>
+        <item name="colorSurfaceContainerHighest">@color/colorBackground</item>
+        <item name="colorOnPrimary">@color/colorBlack</item>
+        <item name="colorOnPrimaryContainer">@color/colorWhite</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorBackground</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="colorPrimaryInverse">@color/colorPrimary</item>
+        <item name="android:windowDisablePreview">true</item>
+
+    </style>
+    <style name="CustomSearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:editTextColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorGray</item>
+        <item name="iconTint">@color/colorPrimary</item>
+        <item name="fontFamily">@font/medium</item>
+    </style>
+    <style name="Theme.NewCode" parent="Base.Theme.NewCode" />
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#6E6E77</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+</resources>

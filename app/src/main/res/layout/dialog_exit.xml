@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/applybg"
+    android:backgroundTint="@color/colorCard"
+    android:layout_gravity="bottom"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:src="@drawable/exitapp"
+            app:tint="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+        <TextView
+            android:gravity="center"
+            android:text="Exit App"
+            android:fontFamily="@font/black"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:alpha=".8"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="Are you sure you want to exit the app?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Exit"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/sub_on"
+                android:fontFamily="@font/medium"
+                android:text="Exit &amp; Rate"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/colorGray"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
+            <Button
+                android:id="@+id/Stay"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/sub_on"
+                android:fontFamily="@font/black"
+                android:text="No Thanks"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

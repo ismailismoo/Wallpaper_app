@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.CategoriesActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Top"
+        android:elevation="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="10dp"
+            android:src="@drawable/back"
+            app:tint="@color/colorWhite"
+            android:background="@drawable/roundtrans"
+            android:padding="10dp"
+            android:id="@+id/Back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+        <TextView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/Back"
+            app:layout_constraintTop_toTopOf="@id/Back"
+            app:layout_constraintBottom_toBottomOf="@id/Back"
+            android:layout_width="0dp"
+            android:id="@+id/CategoryName"
+            android:layout_marginStart="10dp"
+            android:text="Anime"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="55dp"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:elevation="10dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/Top"
+        android:id="@+id/CategoryList"
+        android:layout_above="@id/Banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:elevation="10dp"
+        android:id="@+id/Shimmer"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/Top"
+        android:layout_marginStart="10dp"
+        android:layout_above="@id/Banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+            <include layout="@layout/shimmer_home_wallpapers"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+    <LinearLayout
+        android:elevation="10dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/Banner"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+</RelativeLayout>

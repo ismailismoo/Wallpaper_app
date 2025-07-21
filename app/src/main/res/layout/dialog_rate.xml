@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/applybg"
+    android:backgroundTint="@color/colorCard"
+    android:layout_gravity="bottom"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            app:tint="@color/colorWhite"
+            android:src="@drawable/feedback"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"/>
+        <TextView
+            android:gravity="center"
+            android:text="How was your experience?"
+            android:fontFamily="@font/black"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_margin="20dp"
+            app:trackHeight="20dp"
+            app:thumbRadius="8dp"
+            app:labelBehavior="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/RateNow"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
+            android:text="Send Rating"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/sub_on"
+            android:fontFamily="@font/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

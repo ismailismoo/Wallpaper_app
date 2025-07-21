@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/colorCard"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:layout_height="120dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Minimalistic Background -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorCard"/>
+
+        <!-- Category Icon/Image -->
+        <ImageView
+            android:id="@+id/categoryIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"
+            android:background="@drawable/minimal_circle_background"
+            android:padding="6dp"/>
+
+        <!-- Category Name -->
+        <TextView
+            android:id="@+id/categoryName"
+            android:text="Anime"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:fontFamily="@font/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categoryIcon"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <!-- Category Count (Optional) -->
+        <TextView
+            android:id="@+id/categoryCount"
+            android:text="50+ wallpapers"
+            android:textColor="@color/colorGray"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:fontFamily="@font/medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categoryName"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

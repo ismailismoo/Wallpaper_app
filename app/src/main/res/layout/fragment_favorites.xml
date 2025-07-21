@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activities.FragmentManager.FavoriteFragment">
+
+    <TextView
+        android:elevation="10dp"
+        android:id="@+id/ff2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:drawableTint="@color/colorWhite"
+        android:drawableStart="@drawable/userfavs"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/black"
+        android:text="Favorited Wallpapers"
+        android:textColor="@color/colorWhite" />
+    <TextView
+        android:elevation="10dp"
+        android:id="@+id/ff"
+        android:text="122 wallpapers"
+        android:textColor="@color/colorWhite"
+        android:alpha=".7"
+        android:layout_below="@id/ff2"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:elevation="10dp"
+        android:layout_below="@id/ff"
+        android:layout_marginEnd="5dp"
+        android:id="@+id/FavRecycler"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:elevation="10dp"
+        android:visibility="gone"
+        android:id="@+id/NoFav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            app:tint="@color/colorGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:src="@drawable/empty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="favorites list is empty"
+            android:textColor="@color/colorGray" />
+    </LinearLayout>
+
+
+</RelativeLayout>
