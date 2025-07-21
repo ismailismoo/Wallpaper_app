@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    id 'androidx.room'
 }
 
 android {
@@ -15,6 +14,16 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Room schema location
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                    "room.schemaLocation": "$projectDir/schemas".toString(),
+                    "room.incremental": "true"
+                ]
+            }
+        }
     }
 
     buildTypes {
