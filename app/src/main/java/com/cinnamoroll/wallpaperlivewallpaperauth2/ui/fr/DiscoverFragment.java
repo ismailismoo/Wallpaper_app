@@ -65,89 +65,16 @@ public class DiscoverFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Don't search on every character change to avoid too many requests
+                filterCategories(s.toString());
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
         });
-
-        // Add search button functionality
-        binding.searchInput.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                String query = binding.searchInput.getText().toString().trim();
-                if (!query.isEmpty()) {
-                    searchWallpapers(query);
-                }
-                return true;
-            }
-            return false;
-        });
+        // Remove the EditorActionListener, as we want live filtering
     }
 
-    private void searchWallpapers(String query) {
-        // Show loading
-        binding.categoriesRecycler.setVisibility(View.GONE);
-        binding.categoriesShimmer.setVisibility(View.VISIBLE);
-        binding.categoriesShimmer.startShimmer();
-
-        // Clear previous results
-        filteredCategories.clear();
-        if (categoryAdapter != null) {
-            categoryAdapter.updateCategories(filteredCategories);
-        }
-
-        // Search wallpapers like SearchActivity does
-        new SearchWallpapersTask().execute(query);
-    }
-
-    private class SearchWallpapersTask extends AsyncTask<String, Void, List<CategoryModel>> {
-        @Override
-        protected List<CategoryModel> doInBackground(String... queries) {
-            List<CategoryModel> searchResults = new ArrayList<>();
-            String query = queries[0];
-            
-            try {
-                Document document = Jsoup.connect("https://wallpapercave.com/search?q=" + query.replace(" ", "+"))
-                        .userAgent("chrome")
-                        .followRedirects(true)
-                        .get();
-
-                Elements elements = document.select("div#content").select("div#popular").select("a.albumthumbnail");
-                for (Element element : elements) {
-                    String categoryName = element.select("div.psc").select("p.title").text();
-                    String categoryUrl = element.attr("href");
-                    searchResults.add(new CategoryModel(categoryName, categoryUrl));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
-            return searchResults;
-        }
-
-        @Override
-        protected void onPostExecute(List<CategoryModel> results) {
-            if (isAdded()) {
-                binding.categoriesShimmer.stopShimmer();
-                binding.categoriesShimmer.setVisibility(View.GONE);
-                
-                if (results.isEmpty()) {
-                    // Show no results message
-                    binding.categoriesRecycler.setVisibility(View.GONE);
-                    // You can add a TextView to show "No results found"
-                } else {
-                    // Show search results
-                    filteredCategories.clear();
-                    filteredCategories.addAll(results);
-                    binding.categoriesRecycler.setVisibility(View.VISIBLE);
-                    if (categoryAdapter != null) {
-                        categoryAdapter.updateCategories(filteredCategories);
-                    }
-                }
-            }
-        }
-    }
+    // Remove SearchWallpapersTask and searchWallpapers(String query) as we now filter from scraped categories only
 
     private void filterCategories(String query) {
         if (query.isEmpty()) {
@@ -175,7 +102,8 @@ public class DiscoverFragment extends Fragment {
         
         // Set up the adapter immediately
         carouselAdapter = new FeaturedAdapter(getActivity(), carouselWallpapers);
-        binding.carouselRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        // Change to grid of 3
+        binding.carouselRecycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
         binding.carouselRecycler.setAdapter(carouselAdapter);
         
         // Load real wallpapers from the same source as main wallpapers
